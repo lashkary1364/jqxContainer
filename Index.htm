@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jquery Grid Plugin</title>
+
+    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="scripts/jquery-3.0.0.min.js"></script>
+    <script src="styles/bootstrap/js/bootstrap-v2.min.js"></script>
+    <script src="lswidgets/jqx-grid.js"></script>
+    <script>
+
+        $(document).ready(function(){
+
+             var jsonValue = [
+                                {
+                                    id  : 1,
+                                    text : "Folder 1",
+                                    state : "Level 0",
+                                    parentId : null,
+                                    children    : [
+                                    {
+                                        id  : 2,
+                                        text : "Sub Folder 1",
+                                        state : "Level 1",
+                                        parentId : 1,
+                                        children : []
+                                    },
+                                    {
+                                        id  : 3,
+                                        text : "Sub Folder 2",
+                                        state : "Level 1",
+                                        parentId : 1,
+                                        children : []  
+                                    }
+                                    ]
+                                }, 
+                                {
+                                    id: 4,
+                                    text : "Folder 2",
+                                    state : "Level 0",  
+                                    parentId : null,                                  
+                                    children : []
+                                }
+                                ]; 
+//[{
+//  "id": "1",
+//  "name": "Hot Chocolate",
+//  "type": "Chocolate Beverage",
+//  "calories": "370",
+//  "totalfat": "16g",
+//  "protein": "14g"
+//  }, {
+//  "id": 2,
+//  "name": "Peppermint Hot Chocolate",
+//  "type": "Chocolate Beverage",
+//  "calories": "440",
+//  "totalfat": "16g",
+//  "protein": "13g"
+// }, {
+//  "id": "3",
+//  "name": "Salted Caramel Hot Chocolate",
+//  "type": "Chocolate Beverage",
+//  "calories": "450",
+//  "totalfat": "16g",
+//  "protein": "13g"
+// }, {
+//  "id": "4",
+//  "name": "White Hot Chocolate",
+//  "type": "Chocolate Beverage",
+//  "calories": "420",
+//  "totalfat": "16g",
+//  "protein": "12g"
+// }, {
+//  "id": "5",
+//  "name": "Caffe Americano",
+//  "type": "Espresso Beverage",
+//  "calories": "15",
+//  "totalfat": "0g",
+//  "protein": "1g"
+// }, {
+//  "id": "6",
+//  "name": "Caffe Latte",
+//  "type": "Espresso Beverage",
+//  "calories": "190",
+//  "totalfat": "7g",
+//  "protein": "12g"
+// }, {
+//  "id": "7",
+//  "name": "Caffe Mocha",
+//  "type": "Espresso Beverage",
+//  "calories": "330",
+//  "totalfat": "15g",
+//  "protein": "13g"
+// }, {
+//  "id": "8",
+//  "name": "Cappuccino",
+//  "type": "Espresso Beverage",
+//  "calories": "120",
+//  "totalfat": "4g",
+//  "protein": "8g"
+// }, {
+//  "id": "9",
+//  "name": "Caramel Brulee Latte",
+//  "type": "Espresso Beverage",
+//  "calories": "420",
+//  "totalfat": "9g",
+//  "protein": "8g"
+// }, {
+//  "id": "10",
+//  "name": "Caramel Macchiato",
+//  "type": "Espresso Beverage",
+//  "calories": "240",
+//  "totalfat": "11g",
+//  "protein": "10g"
+// }, {
+//  "id": "11",
+//  "name": "Peppermint Hot Chocolate",
+//  "type": "Espresso Beverage",
+//  "calories": "440",
+//  "totalfat": "10g",
+//  "protein": "13g"
+// }];
+            
+
+
+
+            $("#mygrid").jqxGrid({
+                backColor: 'orange',
+                color: 'black',
+                checkbox: true,
+                source: { 
+                    url: jsonValue,
+                    id: "Id",
+                    datatype: "json", 
+                    debugDelay: 1000 
+                },
+                expandable: true,
+                draggable: true
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Jquery Grid Widgets</h2>
+        <p>This table is responsive. </p>
+
+        <div id="mygrid">
+            <table>
+                <thead settings>
+                    <tr>
+                        <th><input type="checkbox" /></th>
+                        <th>Id</th>
+                        <th>Text</th>
+                        <th>State</th>
+                        <th>ParentId</th>
+                        <!--<th>Id</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Calories</th>
+                        <th>Totalfat</th>
+                        <th>Protein</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
