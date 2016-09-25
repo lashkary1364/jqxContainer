@@ -2,175 +2,117 @@
 <html>
 
 <head>
-    <title>Jquery Grid Plugin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Sortable - Portlets</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body {
+            min-width: 520px;
+        }
+        
+        .column {
+            width: 170px;
+            float: left;
+            padding-bottom: 100px;
+        }
+        
+        .portlet {
+            margin: 0 1em 1em 0;
+            padding: 0.3em;
+        }
+        
+        .portlet-header {
+            padding: 0.2em 0.3em;
+            margin-bottom: 0.5em;
+            position: relative;
+        }
+        
+        .portlet-toggle {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin-top: -8px;
+        }
+        
+        .portlet-content {
+            padding: 0.4em;
+        }
+        
+        .portlet-placeholder {
+            border: 1px dotted black;
+            margin: 0 1em 1em 0;
+            height: 50px;
+        }
+    </style>
 
-    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/app.css">
-    <script src="scripts/jquery-3.0.0.min.js"></script>
-    <script src="styles/bootstrap/js/bootstrap-v2.min.js"></script>
-    <script src="lswidgets/jqx-grid.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>
 
-        $(document).ready(function(){
-
-             var jsonValue = [
-                                {
-                                    id  : 1,
-                                    text : "Folder 1",
-                                    state : "Level 0",
-                                    parentId : null,
-                                    children    : [
-                                    {
-                                        id  : 2,
-                                        text : "Sub Folder 1",
-                                        state : "Level 1",
-                                        parentId : 1,
-                                        children : []
-                                    },
-                                    {
-                                        id  : 3,
-                                        text : "Sub Folder 2",
-                                        state : "Level 1",
-                                        parentId : 1,
-                                        children : []  
-                                    }
-                                    ]
-                                }, 
-                                {
-                                    id: 4,
-                                    text : "Folder 2",
-                                    state : "Level 0",  
-                                    parentId : null,                                  
-                                    children : []
-                                }
-                                ]; 
-//[{
-//  "id": "1",
-//  "name": "Hot Chocolate",
-//  "type": "Chocolate Beverage",
-//  "calories": "370",
-//  "totalfat": "16g",
-//  "protein": "14g"
-//  }, {
-//  "id": 2,
-//  "name": "Peppermint Hot Chocolate",
-//  "type": "Chocolate Beverage",
-//  "calories": "440",
-//  "totalfat": "16g",
-//  "protein": "13g"
-// }, {
-//  "id": "3",
-//  "name": "Salted Caramel Hot Chocolate",
-//  "type": "Chocolate Beverage",
-//  "calories": "450",
-//  "totalfat": "16g",
-//  "protein": "13g"
-// }, {
-//  "id": "4",
-//  "name": "White Hot Chocolate",
-//  "type": "Chocolate Beverage",
-//  "calories": "420",
-//  "totalfat": "16g",
-//  "protein": "12g"
-// }, {
-//  "id": "5",
-//  "name": "Caffe Americano",
-//  "type": "Espresso Beverage",
-//  "calories": "15",
-//  "totalfat": "0g",
-//  "protein": "1g"
-// }, {
-//  "id": "6",
-//  "name": "Caffe Latte",
-//  "type": "Espresso Beverage",
-//  "calories": "190",
-//  "totalfat": "7g",
-//  "protein": "12g"
-// }, {
-//  "id": "7",
-//  "name": "Caffe Mocha",
-//  "type": "Espresso Beverage",
-//  "calories": "330",
-//  "totalfat": "15g",
-//  "protein": "13g"
-// }, {
-//  "id": "8",
-//  "name": "Cappuccino",
-//  "type": "Espresso Beverage",
-//  "calories": "120",
-//  "totalfat": "4g",
-//  "protein": "8g"
-// }, {
-//  "id": "9",
-//  "name": "Caramel Brulee Latte",
-//  "type": "Espresso Beverage",
-//  "calories": "420",
-//  "totalfat": "9g",
-//  "protein": "8g"
-// }, {
-//  "id": "10",
-//  "name": "Caramel Macchiato",
-//  "type": "Espresso Beverage",
-//  "calories": "240",
-//  "totalfat": "11g",
-//  "protein": "10g"
-// }, {
-//  "id": "11",
-//  "name": "Peppermint Hot Chocolate",
-//  "type": "Espresso Beverage",
-//  "calories": "440",
-//  "totalfat": "10g",
-//  "protein": "13g"
-// }];
-            
-
-
-
-            $("#mygrid").jqxGrid({
-                backColor: 'orange',
-                color: 'black',
-                checkbox: true,
-                source: { 
-                    url: jsonValue,
-                    id: "Id",
-                    datatype: "json", 
-                    debugDelay: 1000 
-                },
-                expandable: true,
-                draggable: true
+         $( function() {
+            $( ".column" ).sortable({
+                connectWith: ".column",
+                handle: ".portlet-header",
+                cancel: ".portlet-toggle",
+                placeholder: "portlet-placeholder ui-corner-all"
             });
-        });
+ 
+            $( ".portlet" )
+                .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+                .find( ".portlet-header" )
+                .addClass( "ui-widget-header ui-corner-all" )
+                .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+        
+            $( ".portlet-toggle" ).on( "click", function() {
+                var icon = $( this );
+                icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+                icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+            });
+  } );
 
     </script>
 </head>
 
 <body>
 
-    <div class="container">
-        <h2>Jquery Grid Widgets</h2>
-        <p>This table is responsive. </p>
+    <div class="column">
 
-        <div id="mygrid">
-            <table>
-                <thead settings>
-                    <tr>
-                        <th><input type="checkbox" /></th>
-                        <th>Id</th>
-                        <th>Text</th>
-                        <th>State</th>
-                        <th>ParentId</th>
-                        <!--<th>Id</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Calories</th>
-                        <th>Totalfat</th>
-                        <th>Protein</th>-->
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="portlet">
+            <div class="portlet-header">Feeds</div>
+            <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
         </div>
+
+        <div class="portlet">
+            <div class="portlet-header">News</div>
+            <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+        </div>
+
+    </div>
+
+    <div class="column">
+
+        <div class="portlet">
+            <div class="portlet-header">Shopping</div>
+            <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+        </div>
+
+    </div>
+
+    <div class="column">
+
+        <div class="portlet">
+            <div class="portlet-header">Links</div>
+            <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+        </div>
+
+        <div class="portlet">
+            <div class="portlet-header">Images</div>
+            <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+        </div>
+
     </div>
 
 </body>
