@@ -1,12 +1,13 @@
 body {
-    min-width: 520px;
+    /*min-width: 520px;*/
     direction: rtl;
+    font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif
 }
 
 .column {
     width: 170px;
     float: right;
-    padding-bottom: 100px;
+    padding-bottom: 70px;
 }
 
 .portlet {
@@ -23,9 +24,9 @@ body {
 .portlet-toggle {
     position: absolute;
     top: 50%;
-    right: 0;
+    /*right: 0;*/
+    left: 0;
     margin-top: -8px;
-    float: left;
 }
 
 .portlet-content {
@@ -39,17 +40,57 @@ body {
 }
 
 #containment-wrapper {
-    width: 510px;
-    height: 310px;
+    min-width: 700px;
+    min-height: 450px;
     border: 2px solid #ccc;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     float: right;
+    /*overflow-x: auto;*/
+    overflow-y: auto;
+    margin-right: 2px;
 }
 
 #toolbox-wrapper {
-    width: 90px;
-    height: 310px;
+    width: 110px;
+    min-height: 450px;
     border: 2px solid #ccc;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     float: right;
+    margin-right: 2px;
+}
+
+#gallery {
+    float: left;
+    width: 65%;
+    min-height: 12em;
+}
+
+.gallery.custom-state-active {
+    background: #eee;
+}
+
+.gallery li {
+    float: left;
+    width: 96px;
+    padding: 0.4em;
+    margin: 0 0.4em 0.4em 0;
+    text-align: center;
+}
+
+.gallery li h5 {
+    margin: 0 0 0.4em;
+    cursor: move;
+}
+
+.gallery li a {
+    float: right;
+}
+
+.gallery li a.ui-icon-zoomin {
+    float: left;
+}
+
+.gallery li img {
+    width: 100%;
+    cursor: move;
 }
